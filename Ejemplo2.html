@@ -1,14 +1,35 @@
-<button type="button" class="btn btn-primary btn-addDiv">Añadir título al DIV</button>
-<button type="button" class="btn btn-warning btn-addBody">Añadir DIV al BODY</button>
-<button type="button" class="btn btn-danger btn-changeBody">Sustituir el contenido de BODY</button>
-<script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Ejemplo Bitacora Web Añadir un DIV con javascript-jquery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+  .divBody{background-color:#f9f9f9;padding:15px;width:300px;}
+  .contenido{margin-bottom:15px;}
+  img{margin-top:5px;}
+  </style>
+</head>
+<body>
+	<a href="http://bitacoraweb.info" target="_blank"><img src="http://bitacoraweb.info/wp-content/uploads/2015/10/bitacora.png" width="400" border="0"></a>
+	<h1>Ejemplo Añadir un DIV con javascript-jquery</h1>
+	<div class="contenido">Texto por defecto</div>
+	<button type="button" class="btn btn-primary btn-addDiv">Añadir título al DIV</button>
+	<button type="button" class="btn btn-warning btn-addBody">Añadir DIV al BODY</button>
+	<button type="button" class="btn btn-danger btn-changeBody">Sustituir el contenido de BODY</button>
+  <script>
   $('.btn-addBody').click(function( event ) {
-  	$('body').append('<div class="divBody">¡Felicidades! Has insertado un nuevo DIV en el BODY</div>')
-  });
+  					$('body').append('<div class="divBody">¡Felicidades! Has insertado un nuevo DIV en el BODY</div>')
+  					});
   $('.btn-addDiv').click(function( event ) {
-  	$('.contenido').append('<h2>¡Felicidades! Has insertado un texto en el div</h2>')
-  });
+  					$('.contenido').append('<h2>¡Felicidades! Has insertado un texto en el div</h2>')
+  					});
   $('.btn-changeBody').click(function( event ) {
-  	$('body').html('<h2>¡Felicidades! Has cambiado el contenido del body</h2>')
-  });
+  					$('body').html('<h2>¡Felicidades! Has cambiado el contenido del body</h2>')
+  					});
   </script>
+</body>
+</html>

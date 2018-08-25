@@ -1,0 +1,2 @@
+https://www.youtube.com/watch?v=EdoyzEdseHk
+https://www.jamf.com/jamf-nation/articles/348/configuring-the-java_home-and-jre_home-environment-variables-on-a-windows-server

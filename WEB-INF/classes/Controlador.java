@@ -8,30 +8,38 @@ import java.util.*;
 public class Controlador extends HttpServlet{
 	ConexionBase conex=new ConexionBase();
 
-	//Este método se ejecuta una única vez, al ser inicializado por primera vez
-	//el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
-	//en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	/*
+		Este método se ejecuta una única vez, al ser inicializado por primera vez 
+		el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
+		en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	*/
 	public void init (ServletConfig config) throws ServletException {
 		// Llamada al método init() de la superclase (GenericServlet)
 		// Así se asegura una correcta inicialización del servlet
 		super.init(config);
 		conex.establecerConexion();
-	}// fin del método init()
+	} // Fin del método init()
 
 
-	// Este método es llamado por el servidor web al "apagarse"
-	// (al hacer shut down). Sirve para proporcionar una correcta
-	// desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	/* 
+		Este método es llamado por el servidor web al "apagarse"
+		(al hacer shut down). Sirve para proporcionar una correcta
+		desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	*/
 	public void destroy () {
 		super.destroy();
 		conex.cerrarConexion();
-	} // fin de destroy()
+	} // Fin de destroy()
 	
-	public String insertarQuery(String table, String[] values){//Construye el query para insertar registros
+	//Construye el query para insertar registros
+	public String insertarQuery(String table, String[] values)
+	{
 		return "insert into "+table+" values("+values[0]+", '"+values[1]+"','"+values[2]+"')";
 	}
 
-	public String eliminarQuery(String table, String id){//Construye el query para eliminar registros
+	//Construye el query para eliminar registros
+	public String eliminarQuery(String table, String id)
+	{
 		return "delete from "+table+" where clave="+id;
 	}
 

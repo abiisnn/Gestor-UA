@@ -6,18 +6,17 @@ import javax.servlet.http.*;
 
 public class Controlador extends HttpServlet{
 	ConexionBase conex=new ConexionBase();
-	String[] datos=new String[3];
-
+	
 	public String insertarQuery(String table, String[] values){//Construye el query para insertar registros
-		return "insert into "+table+" values("+datos[0]+", '"+datos[1]+"','"+datos[2]+"')";
+		return "insert into "+table+" values("+values[0]+", '"+values[1]+"','"+values[2]+"')";
 	}
 
 	public String eliminarQuery(String table, String id){//Construye el query para eliminar registros
 		return "delete from "+table+" where clave="+id;
 	}
 
-
-	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+	public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+		String[] datos=new String[3];
 		respuesta.setContentType("text/html");
 		PrintWriter salida=respuesta.getWriter();
 		try{
@@ -25,6 +24,10 @@ public class Controlador extends HttpServlet{
 			datos[0]=peticion.getParameter("clave");
 			datos[1]=peticion.getParameter("tipo");
 			datos[2]=peticion.getParameter("bibliografia");
+
+			conex.establecerConexion();
+			conex.operacionSQL(insertarQuery("bibliografia", datos));
+			conex.cerrarConexion();
 
 	
 			/*salida.print("<HTML>");

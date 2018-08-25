@@ -3,7 +3,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class Interfaz extends HttpServlet{
-	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+	public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
 		respuesta.setContentType("text/html");
 		PrintWriter salida=respuesta.getWriter();
 		try{

@@ -12,7 +12,7 @@ public class ConexionBase{
 
 
 	public ConexionBase(){//Campos necesarios para comunicarse con la BD
-		estado=false;
+		estado=false;//Para ver si la conexion se realizo o si hubo errores
 		dbName="ingenieria_de_software";
 		url = "jdbc:mysql://localhost:3306/";
 		user="root";
@@ -31,7 +31,7 @@ public class ConexionBase{
 	}
 
 	public void operacionSQL(String query){ //Podemos insertar y eliminar con esta misma funcion
-		//Hay que revisar que se le envia como query INSERT, DELETE, UPDATE
+		//Hay que revisar que se le envia como query INSERT, DELETE, UPDATE en Controlador.java
 		try{
 			Statement statement=conexion.prepareStatement(query);
 			statement.executeUpdate(query);

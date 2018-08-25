@@ -11,7 +11,7 @@ function addCancion(){
  
         var div = document.createElement('div');
         div.setAttribute('class', 'form-inline');
-            div.innerHTML = '<div style="clear:both" class="Clave_'+a+' col-md-1"><input class="form-control" name="Clave_'+a+'" type="text"/></div><div class="B_'+a+' col-md-1""><input class="form-control" name="B_'+a+'" type="text"/></div><div class="C_'+a+' col-md-1""><input class="form-control" name="C_'+a+'" type="text"/></div><div class="Bibliografia_'+a+' col-md-5""><input class="form-control" name="Bibliografia_'+a+'" type="text"/></div><div class="boton_'+a+' col-md-4""><input type="button" id="add_cancion()" onClick="addCancion()" value="Agregar" /></div>';
+            div.innerHTML = '<div style="clear:both" class="cancion_'+a+' col-md-1"><input class="form-control" name="cancion_'+a+'" type="text"/></div>';
             document.getElementById('canciones').appendChild(div);document.getElementById('canciones').appendChild(div);
 }
 </script>

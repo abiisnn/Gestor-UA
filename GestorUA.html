@@ -8,11 +8,10 @@
 a = 0;
 function addCancion(){
         a++;
- 
-        var div = document.createElement('div');
+        var div = document.createElement('div'); // Crea un elemento DIV
         div.setAttribute('class', 'form-inline');
-            div.innerHTML = '<div style="clear:both" class="cancion_'+a+' col-md-1"><input class="form-control" name="cancion_'+a+'" type="text"/></div>';
-            document.getElementById('canciones').appendChild(div);document.getElementById('canciones').appendChild(div);
+            div.innerHTML = '<div style="clear:both" class="Lista_'+a+' col-md-6"><input class="form-control" type="text" name="Clave_'+a+'" /></div><div class="clave_'+a+' col-md-1"><input class="form-control" name="b_'+a+'" type="radio"/></div><div class="Lista_'+a+' col-md-1"><input class="form-control" name="c_'+a+'" type="radio"/></div><div class="Lista_'+a+' col-md-5"><input class="form-control" name="bibliografi_'+a+'" type="text"/></div><div class="Lista_'+a+' col-md-4"><input name="boton_'+a+'" type="button" id="eliminar()" onClick="eliminar_dato()" value="Eliminar"/></div>';
+            document.getElementById('Lista').appendChild(div);document.getElementById('Lista').appendChild(div);
 }
 </script>
 
@@ -25,21 +24,24 @@ function addCancion(){
     <form action="formulario2.html" id="formulario" method="get">
     <br><br>
     <div class="row">
+        <center>
         <div class="col-md-1"><label>Clave</label></div>
         <div class="col-md-1"><label>B</label></div>
         <div class="col-md-1"><label>C</label></div>
         <div class="col-md-5"><label>Bibliograf&iacute;a</label></div>
         <div class="col-md-4"><label> </label></div>
+        </center>
     </div>
     <div class="row">
     	<div class="col-md-1"><input class="form-control" type="text" name=""></div>
-        <div class="col-md-1"><input class="form-control" type="text" name=""></div>
-        <div class="col-md-1"><input class="form-control" type="text" name=""></div>
+        <div class="col-md-1"><input class="form-control" type="radio" name="" value="B"></div>
+        <div class="col-md-1"><input class="form-control" type="radio" name="" value="C"></div>
         <div class="col-md-5"><input class="form-control" type="text" name=""></div>
-    	<div class="col-md-1"><input type="button" id="add_cancion()" onClick="addCancion()" value="Agregar" />
+    	<div class="col-md-2"><input type="button" id="add_cancion()" onClick="addCancion()" value="Agregar" />
     </div>
-    <!-- El id="canciones" indica que la función de JavaScript dejará aquí el resultado -->
-    <div class="row" id="canciones">
+    <!-- El id="Lista" indica que la función de JavaScript dejará aquí el resultado -->
+    <div class="row" id="Lista">
+    
     </div>
     </form>
 </div>

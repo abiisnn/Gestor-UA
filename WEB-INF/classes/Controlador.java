@@ -27,31 +27,29 @@ public class Controlador extends HttpServlet{
 		conex.cerrarConexion();
 	} // fin de destroy()
 	
-	public String insertarQuery(String table, String[] values){//Construye el query para insertar registros
+	public String generarQuery(String table, String[] values){//Construye el query para insertar registros
 		return "insert into "+table+" values("+values[0]+", '"+values[1]+"','"+values[2]+"')";
-	}
+	}//fin generarQuery
 
-	public String eliminarQuery(String table, String id){//Construye el query para eliminar registros
-		return "delete from "+table+" where clave="+id;
-	}
-
-	// Método llamada mediante un HTTP POST
-	public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+	// Método llamada mediante un HTTP GET
+	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
 		String[] datos=new String[3];
 		respuesta.setContentType("text/html");
 		PrintWriter salida=respuesta.getWriter();
 		try{
+			int noCampos=Integer.parseInt(peticion.getParameter("noCampos"));//Necesitamos obtener el numero de campos que se insertaran
 
-			datos[0]=peticion.getParameter("clave");
-			datos[1]=peticion.getParameter("tipo");
-			datos[2]=peticion.getParameter("bibliografia");
-
+			for (int i=0; i<noCampos; i++){//Con ayuda de este for, vamos recorriendo cada registro
+				datos[0]=peticion.getParameter("clave"+i);
+				datos[1]=peticion.getParameter("tipo"+i);
+				datos[2]=peticion.getParameter("bibliografia"+i);
+				conex.insertar(generarQuery("bibliografia", datos));
+			}//fin for
 			
-			conex.operacionSQL(insertarQuery("bibliografia", datos));
-		}
+		}//fin try
 		catch(Exception ex){salida.print("ERROR"+ex);}
 		finally{salida.close();}
-	}
+	}// fin metodo doPost
 
 
-}
+}//fin servlet Controlador

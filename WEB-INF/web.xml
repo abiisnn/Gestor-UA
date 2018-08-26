@@ -5,7 +5,7 @@
     "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
-	<display-name>Servles que no funcionan</display-name>
+	<display-name>Servlets que no funcionan</display-name>
 	<description>
 	     Servlets que no funcionan
 	</description>
@@ -13,17 +13,17 @@
 	<servlet>
 	        <servlet-name>Interfaz</servlet-name>
 	        <servlet-class>Interfaz</servlet-class>
-	        <servlet-name>Controlador</servlet-name>
-	        <servlet-class>Controlador</servlet-class>
-	        <servlet-name>ConexionBase</servlet-name>
-	        <servlet-class>ConexionBase</servlet-class>
 	</servlet>
-  	<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>Interfaz</servlet-name>
 		<url-pattern>/Interfaz</url-pattern>
+	</servlet-mapping> 
+	<servlet>
+	        <servlet-name>Controlador</servlet-name>
+	        <servlet-class>Controlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
 		<servlet-name>Controlador</servlet-name>
 		<url-pattern>/Controlador</url-pattern>
-		<servlet-name>ConexionBase</servlet-name>
-		<url-pattern>/ConexionBase</url-pattern>
 	</servlet-mapping> 
 </web-app>

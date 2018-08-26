@@ -6,14 +6,17 @@ import java.util.*;
 
 //Compilar: javac -cp ,;../lib/mysqlcon.jar;../lib/servlet-api.jar; Interfaz.java
 
-public class Interfaz extends HttpServlet{
-	
+//ESTA ES NUESTRA PAGINA DE INICIO O PRINCIPAL
+
+public class Interfaz extends HttpServlet
+{
 	ConexionBase conex=new ConexionBase();
 
 	//Este método se ejecuta una única vez, al ser inicializado por primera vez
 	//el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
 	//en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
-	public void init (ServletConfig config) throws ServletException {
+	public void init (ServletConfig config) throws ServletException 
+	{
 		// Llamada al método init() de la superclase (GenericServlet)
 		// Así se asegura una correcta inicialización del servlet
 		super.init(config);
@@ -24,16 +27,19 @@ public class Interfaz extends HttpServlet{
 	// Este método es llamado por el servidor web al "apagarse"
 	// (al hacer shut down). Sirve para proporcionar una correcta
 	// desconexión de una base de datos, cerrar ficheros abiertos, etc.
-	public void destroy () {
+	public void destroy () 
+	{
 		super.destroy();
 		conex.cerrarConexion();
 	} // fin de destroy()
 
 	// Método llamada mediante un HTTP GET
-	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException
+	{
 		respuesta.setContentType("text/html");
 		PrintWriter salida=respuesta.getWriter();
-		try{
+		try
+		{
 			salida.print("<HTML>");
 			salida.print("	<HEAD>");
 			salida.print("		<TITLE>");
@@ -48,7 +54,10 @@ public class Interfaz extends HttpServlet{
 			
 			salida.print("</HTML>");
 		}
-		catch(Exception ex){salida.print("Error al cargar el formulario: "+ex);}
+		catch(Exception ex)
+		{
+			salida.print("Error al cargar el formulario: "+ex);
+		}
 		finally{salida.close();}
 	}
 

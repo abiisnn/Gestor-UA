@@ -6,14 +6,16 @@ import java.util.*;
 
 //Compilar: javac -cp ,;../lib/mysqlcon.jar;../lib/servlet-api.jar; Interfaz.java
 
-public class Interfaz extends HttpServlet{
+public class Interfaz extends HttpServlet
+{
 	
 	ConexionBase conex=new ConexionBase();
 
 	//Este método se ejecuta una única vez, al ser inicializado por primera vez
 	//el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
 	//en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
-	public void init (ServletConfig config) throws ServletException {
+	public void init (ServletConfig config) throws ServletException 
+	{
 		// Llamada al método init() de la superclase (GenericServlet)
 		// Así se asegura una correcta inicialización del servlet
 		super.init(config);
@@ -24,17 +26,23 @@ public class Interfaz extends HttpServlet{
 	// Este método es llamado por el servidor web al "apagarse"
 	// (al hacer shut down). Sirve para proporcionar una correcta
 	// desconexión de una base de datos, cerrar ficheros abiertos, etc.
-	public void destroy () {
+	public void destroy () 
+	{
 		super.destroy();
 		conex.cerrarConexion();
 	} // fin de destroy()
 
 	// Método llamada mediante un HTTP GET
-	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException{
+	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException
+	{
 		respuesta.setContentType("text/html");
 		PrintWriter salida=respuesta.getWriter();
-		try{
-			int ultimaClave=conex.consultarClave("select count(*) from bibliografia;");//Obtenemos la clave del ultimo registro
+		try
+		{
+			int ultClave=conex.consultarClave("select count(*) from bibliografia;");//Obtenemos la clave del ultimo registro
+
+			//IMPLEMENTACION HTML. Para comprender facilmente el codigo revisar el archivo Index.html, es un copy paste de ese archivo
+			//Pero, como necesitamos el valor de la ultima clave en la que nos quedamos debemos ponerlo en este Servlet
 
 			salida.print("<html lang='es'>");
 				salida.print("<head>");
@@ -42,7 +50,7 @@ public class Interfaz extends HttpServlet{
 					salida.print("<meta charset='utf-8'>");
 					salida.print("<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>");
 					salida.print("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>");
-					salida.print("<script> var i="+ultimaClave+"</script>");
+					salida.print("<script> var i="+ultClave+"</script>");
 					salida.print("<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>");
 					salida.print("<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>  ");
 			        salida.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>  ");
@@ -68,14 +76,15 @@ public class Interfaz extends HttpServlet{
 									salida.print("<th></th>");
 							    salida.print("</tr>");
 							salida.print("</table>");
-							salida.print("<form name='formulario' method='POST' action='Controlador' onsubmit='noRegistros()'>");
+							salida.print("<form name='formulario' method='POST' action='Controlador' onsubmit='noRegistros()'>");//Aui llamamos a la funcion JS
 								salida.print("<table class='table bg-info'  id='dynamic_field' width='500'>");
 									salida.print("<tr>");
-										salida.print("<td width=1000><label name='etiqueta'>"+ultimaClave+"</label></td>");
-										salida.print("<input type='hidden' name='clave"+(ultimaClave-1)+"' value='"+ultimaClave+"'></td>");
-										salida.print("<td><input required name='tipo"+(ultimaClave-1)+"' placeholder='B' type='radio' value='B'/></td>");
-										salida.print("<td><input required name='tipo"+(ultimaClave-1)+"' placeholder='C' type='radio' value='C'/></td>");
-										salida.print("<td><input required name='bibliografia"+(ultimaClave-1)+"' placeholder='Bibliografia' size=110 type='text'/></td>");
+										salida.print("<td width=1000><label name='etiqueta'>"+ultClave+"</label></td>");
+										salida.print("<input type='hidden' name='inicio' value='"+(ultClave-1)+"'></td>");
+										salida.print("<input type='hidden' name='clave"+(ultClave-1)+"' value='"+ultClave+"'></td>");
+										salida.print("<td><input required name='tipo"+(ultClave-1)+"' placeholder='B' type='radio' value='B'/></td>");
+										salida.print("<td><input required name='tipo"+(ultClave-1)+"' placeholder='C' type='radio' value='C'/></td>");
+										salida.print("<td><input required name='bibliografia"+(ultClave-1)+"' placeholder='Bibliografia' size=110 type='text'/></td>");
 										salida.print("<td><button type='button' name='add' id='add' class='btn btn-success'>Agregar</button></td>");
 									salida.print("</tr>");
 								salida.print("</table>");
@@ -93,8 +102,15 @@ public class Interfaz extends HttpServlet{
 			salida.print("</html>");
 
 		}
-		catch(Exception ex){salida.print("Error al cargar el formulario: "+ex);}
-		finally{salida.close();}
+		catch(Exception ex)
+		{
+			salida.print("Error al cargar el formulario: "+ex);
+		}
+
+		finally
+		{
+			salida.close();
+		}
 	}
 
 }

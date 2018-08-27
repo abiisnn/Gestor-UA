@@ -54,19 +54,19 @@ public class Controlador extends HttpServlet
 				datos[1]=peticion.getParameter("tipo"+i);
 				datos[2]=peticion.getParameter("bibliografia"+i);
 
-				salida.print(""+datos[0]+" "+datos[1]+" "+datos[2]);//Impresion campos para ver si realmente el servlet los recibe
+				//salida.print(""+datos[0]+" "+datos[1]+" "+datos[2]);//Impresion campos para ver si realmente el servlet los recibe
 
 				conex.insertar(generarQuery("bibliografia", datos));//Insercion en la base de datos
-
-				salida.print("Insercion correcta<br>");//Msje de confirmacion, Debe de ir en un alert de JavaScript
-				salida.print("<button><a href='Interfaz'>Volver al Formulario</a></button>");//Boton para regresar al formulario
-
 			}//fin for
+
+			//Mensaje 01 en alert
+			salida.print("<script>alert('El registro se ha hecho de manera exitosa.'); window.location.replace('Interfaz');</script>");
+
 			
 		}//fin try
 		catch(Exception ex)
 		{
-			salida.print("ERROR"+ex);
+			salida.print("<script>alert('Ha ocurrido un error: '"+ex+"); window.location.replace('Interfaz');</script>");
 		}
 		finally
 		{

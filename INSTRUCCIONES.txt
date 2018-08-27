@@ -1,8 +1,0 @@
-Ir a C:\apache-tomcat-9.0.0.M10
-Entrar a la carpeta webapps
-Crear una nueva carpeta para el proyecto (Gestor-UA)
-Abrir la carpeta y pegar todo el contenido del repositorio
-
-
-Las clases y .javas se encuentran en la carpeta classes dentro de WEB-INF
-Para compilar arriba de cada archivo esta el comando a ingresar en CMD

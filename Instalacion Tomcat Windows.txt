@@ -1,6 +1,9 @@
+Instalacion Tomcat Windows:
 https://www.youtube.com/watch?v=EdoyzEdseHk
+
+Solucionar errores de JAVA_HOME y JRE_HOME:
 https://www.jamf.com/jamf-nation/articles/348/configuring-the-java_home-and-jre_home-environment-variables-on-a-windows-server
 
 EJECUTAR:
-En CMD teclear "startup"
+En CMD teclear "startup" o dar clic en el accedo directo
 En Navegador ir al url: http://localhost:8080/

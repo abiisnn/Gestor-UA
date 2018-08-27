@@ -1,0 +1,16 @@
+
+
+1.- Cargar la bd.sql en MySQL
+2.- Ir a C:\apache-tomcat-9.0.0.M10\
+3.- Entrar a la carpeta webapps
+4.- Crear una nueva carpeta para el proyecto llamada "GestorUA"
+5.- Abrir la carpeta y pegar todo el contenido del repositorio
+6.- Ejecutar Tomcat con startup o con el acceso director
+7.- En el navegador (Chrome) ir al url: http://localhost:8080/GestorUA/Interfaz
+8.- Se despliega el formulario
+
+
+NOTAS:
+--- Las clases y .javas se encuentran en la carpeta classes dentro de WEB-INF
+--- Para compilar al inicio  de cada archivo esta el comando a ingresar en CMD en el mismo directorio antes mencionado:
+		C:\apache-tomcat-9.0.0.M10\webapps\GestorUA\WEB-INF\classes

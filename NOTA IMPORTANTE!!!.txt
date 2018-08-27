@@ -1,0 +1,14 @@
+BOTONES DE ELIMINAR:
+
+Para eliminar campos, la unica manera en que la interfaz funcionara es yendo de abajo hacia arriba, de forma consecutiva.
+
+En dado caso que se desee eliminar un campo de enmedio, saltandose campos y de forma no descendente consecutiva, habrá problemas en la visualizacion de
+las claves de las bibliografias en el formulario. (Nulo conocimiento en JavaScript xddddd)
+
+Sin embargo, esto no afectara a la insercion en la base de datos. (Simplemente se saltaran claves)
+
+BOTON AGREGAR:
+
+De mismo modo, si se elimino un campo intermedio y se desea agregar otro, habrá claves de bibliografias repetidas. (Nulo conocimiento en JavaScript xddddd)
+Una vez más, esto no es problema para las inserciones pues hara la insercion de la clave que este primero. 
+(No hay colisiones, si ya existe el valor simplemente ignora el nuevo)

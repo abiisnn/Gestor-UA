@@ -50,7 +50,7 @@ public class Interfaz extends HttpServlet
 					salida.print("<meta charset='utf-8'>");
 					salida.print("<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>");
 					salida.print("<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>");
-					salida.print("<script> var i="+ultClave+"</script>");
+					salida.print("<script> var i="+ultClave+", noClicks=1;</script>");
 					salida.print("<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js'></script>");
 					salida.print("<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>  ");
 			        salida.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>  ");

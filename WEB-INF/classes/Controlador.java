@@ -7,63 +7,62 @@ import java.util.*;
 
 public class Controlador extends HttpServlet
 {
-	ConexionBase conex=new ConexionBase();
-
-	//Este método se ejecuta una única vez, al ser inicializado por primera vez
-	//el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
-	//en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	ConexionBase conex = new ConexionBase();
+	/*
+		Este método se ejecuta una única vez, al ser inicializado por primera vez
+		el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
+		en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	*/
 	public void init (ServletConfig config) throws ServletException 
 	{
 		// Llamada al método init() de la superclase (GenericServlet)
 		// Así se asegura una correcta inicialización del servlet
 		super.init(config);
 		conex.establecerConexion();
-	}// fin del método init()
-
-
-	// Este método es llamado por el servidor web al "apagarse"
-	// (al hacer shut down). Sirve para proporcionar una correcta
-	// desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	} // Fin del método init()
+	/* 
+		Este método es llamado por el servidor web al "apagarse"
+		(al hacer shut down). Sirve para proporcionar una correcta
+		desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	*/
 	public void destroy () 
 	{
 		super.destroy();
 		conex.cerrarConexion();
-	} // fin de destroy()
-	
-	public String generarQuery(String table, String[] values)//Construye el query para insertar registros
+	} // Fin de destroy()
+
+	// Construye el query para insertar registros
+	public String generarQuery(String table, String[] values)
 	{
-		return "insert into "+table+" values("+values[0]+", '"+values[1]+"','"+values[2]+"')";
-	}//fin generarQuery
+		return "insert into "+ table +" values(" + values[0]+", '"+ values[1]+ "','" + values[2] + "')";
+	} // Fin generarQuery
 
 	// Método llamada mediante un HTTP GET
 	public void doPost(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException
 	{
-		String[] datos=new String[3];//Arreglo que nos servira para manejar los registros entrantes
-
-		respuesta.setContentType("text/html");//Variable para escribir en HTML
-		PrintWriter salida=respuesta.getWriter();
-
+		// Arreglo que nos servira para manejar los registros entrantes
+		String[] datos = new String[3];
+		// Variable para escribir en HTML
+		respuesta.setContentType("text/html");
+		PrintWriter salida = respuesta.getWriter();
 		try
 		{
-			int noCampos=Integer.parseInt(peticion.getParameter("noCampos"));//Necesitamos obtener el numero de campos que se insertaran
-			int valorInicio=Integer.parseInt(peticion.getParameter("inicio"));//Necesitamos saber en donde se quedo el ult registro
-
-			for (int i=valorInicio; i<noCampos; i++)//Con ayuda de este for, vamos recorriendo cada registro
+			// Necesitamos obtener el numero de campos que se insertaran
+			int noCampos = Integer.parseInt(peticion.getParameter("noCampos"));
+			// Necesitamos saber en donde se quedo el ult registro
+			int valorInicio = Integer.parseInt(peticion.getParameter("inicio"));
+			// Con ayuda de este for, vamos recorriendo cada registro
+			for (int i=valorInicio; i<noCampos; i++)
 			{
-				datos[0]=peticion.getParameter("clave"+i);
-				datos[1]=peticion.getParameter("tipo"+i);
-				datos[2]=peticion.getParameter("bibliografia"+i);
-
-				//salida.print(""+datos[0]+" "+datos[1]+" "+datos[2]);//Impresion campos para ver si realmente el servlet los recibe
-
-				conex.insertar(generarQuery("bibliografia", datos));//Insercion en la base de datos
-			}//fin for
+				datos[0] = peticion.getParameter("clave" +i);
+				datos[1] = peticion.getParameter("tipo" +i);
+				datos[2] = peticion.getParameter("bibliografia" +i);
+				conex.insertar(generarQuery("bibliografia", datos));
+			} // Fin for
 
 			//Mensaje 01 en alert
 			salida.print("<script>alert('El registro se ha hecho de manera exitosa.'); window.location.replace('Interfaz');</script>");
-
-			
-		}//fin try
+		}// Fin try
 		catch(Exception ex)
 		{
 			salida.print("<script>alert('Ha ocurrido un error: '"+ex+"); window.location.replace('Interfaz');</script>");
@@ -72,7 +71,5 @@ public class Controlador extends HttpServlet
 		{
 			salida.close();
 		}
-	}// fin metodo doPost
-
-
-}//fin servlet Controlador
+	} // Fin metodo doPost
+} // Fin servlet Controlador

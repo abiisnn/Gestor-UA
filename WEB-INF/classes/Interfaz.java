@@ -8,42 +8,44 @@ import java.util.*;
 
 public class Interfaz extends HttpServlet
 {
-	
-	ConexionBase conex=new ConexionBase();
-
-	//Este método se ejecuta una única vez, al ser inicializado por primera vez
-	//el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
-	//en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	ConexionBase conex = new ConexionBase();
+	/*
+		Este método se ejecuta una única vez, al ser inicializado por primera vez
+		el servlet.Se suelen inicializar variables y ejecutar operaciones costosas
+		en tiempo de ejecución (abrir ficheros, conectar con bases de datos, etc)
+	*/
 	public void init (ServletConfig config) throws ServletException 
 	{
 		// Llamada al método init() de la superclase (GenericServlet)
 		// Así se asegura una correcta inicialización del servlet
 		super.init(config);
 		conex.establecerConexion();
-	}// fin del método init()
+	} // Fin del método init()
 
-
-	// Este método es llamado por el servidor web al "apagarse"
-	// (al hacer shut down). Sirve para proporcionar una correcta
-	// desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	/* 
+		Este método es llamado por el servidor web al "apagarse"
+		(al hacer shut down). Sirve para proporcionar una correcta
+		desconexión de una base de datos, cerrar ficheros abiertos, etc.
+	*/
 	public void destroy () 
 	{
 		super.destroy();
 		conex.cerrarConexion();
-	} // fin de destroy()
+	} // Fin de destroy()
 
 	// Método llamada mediante un HTTP GET
-	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)  throws ServletException, IOException
+	public void doGet(HttpServletRequest peticion, HttpServletResponse respuesta) throws ServletException, IOException
 	{
 		respuesta.setContentType("text/html");
-		PrintWriter salida=respuesta.getWriter();
+		PrintWriter salida = respuesta.getWriter();
 		try
-		{
-			int ultClave=conex.consultarClave("select count(*) from bibliografia;");//Obtenemos la clave del ultimo registro
-
-			//IMPLEMENTACION HTML. Para comprender facilmente el codigo revisar el archivo Index.html, es un copy paste de ese archivo
-			//Pero, como necesitamos el valor de la ultima clave en la que nos quedamos debemos ponerlo en este Servlet
-
+		{	//Obtenemos la clave del ultimo registro
+			int ultClave = conex.consultarClave("select count(*) from bibliografia;");
+			/*
+				IMPLEMENTACION HTML. Para comprender facilmente el codigo revisar el archivo 
+				Index.html, es un copy paste de ese archivo pero, como necesitamos el valor 
+				de la ultima clave en la que nos quedamos debemos ponerlo en este Servlet
+			*/
 			salida.print("<html lang='es'>");
 				salida.print("<head>");
 					salida.print("<title></title>");
@@ -100,13 +102,11 @@ public class Interfaz extends HttpServlet
 				
 				salida.print("</body>");
 			salida.print("</html>");
-
 		}
 		catch(Exception ex)
 		{
 			salida.print("Error al cargar el formulario: "+ex);
 		}
-
 		finally
 		{
 			salida.close();
